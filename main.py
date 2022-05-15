@@ -135,7 +135,12 @@ def WindowReSize():
     Window.geometry("600x300")
 
 
-Window = Window(themename="MiDark-B 1.0", iconphoto="image\\QRCreator.png")
+if os.path.exists("image/QRCreator.png"):
+    Window = Window(themename="MiDark-B 1.0", iconphoto="image\\QRCreator.png")
+else:
+    Window = Window(themename="MiDark-B 1.0")
+
+
 Style = Style()
 Style.theme_use("MiDark-B 1.0")
 Window.title("二维码生成器")
@@ -184,7 +189,11 @@ Editor.pack(side=LEFT, fill=BOTH, expand=YES)
 
 QR = ttk.Frame(Window)
 
-QRFile = PhotoImage(file="image//Qr.png")
+if os.path.exists("image\\Qr.png"):
+    QRFile = PhotoImage(file="image\\Qr.png")
+else:
+    QRFile = PhotoImage()
+
 QRImage = ttk.Label(image=QRFile)
 QRImage.bind("<Double-Button-1>", lambda bt1: OpenQRSettings())
 QRImage.pack(fill=BOTH, expand=YES, padx=10, pady=10)
